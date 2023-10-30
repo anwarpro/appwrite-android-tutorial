@@ -35,13 +35,22 @@ import com.helloanwar.ideatracker.R
 import com.helloanwar.ideatracker.ui.theme.IdeaTrackerTheme
 
 @Composable
-fun LoginScreen() {
-    LoginScreenBody()
+fun LoginScreen(
+    onBack: () -> Unit,
+    onSignUp: () -> Unit
+) {
+    LoginScreenBody(
+        onBack = onBack,
+        onSignUp = onSignUp
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreenBody() {
+fun LoginScreenBody(
+    onBack: () -> Unit,
+    onSignUp: () -> Unit
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -52,7 +61,7 @@ fun LoginScreenBody() {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-
+                            onBack()
                         }
                     ) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
@@ -126,7 +135,7 @@ fun LoginScreenBody() {
                 Text(text = "Don't hava an account?")
                 TextButton(
                     onClick = {
-
+                        onSignUp()
                     }
                 ) {
                     Text(text = "Sign Up")
@@ -143,6 +152,6 @@ fun LoginScreenBody() {
 @Composable
 fun LoginScreenPreview() {
     IdeaTrackerTheme {
-        LoginScreenBody()
+        LoginScreenBody(onBack = {}, onSignUp = {})
     }
 }

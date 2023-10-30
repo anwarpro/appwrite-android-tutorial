@@ -35,13 +35,17 @@ import com.helloanwar.ideatracker.R
 import com.helloanwar.ideatracker.ui.theme.IdeaTrackerTheme
 
 @Composable
-fun SingUpScreen() {
-    SingUpScreenBody()
+fun SingUpScreen(
+    onBack: () -> Unit
+) {
+    SingUpScreenBody(onBack = onBack)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SingUpScreenBody() {
+fun SingUpScreenBody(
+    onBack: () -> Unit
+) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -54,7 +58,7 @@ fun SingUpScreenBody() {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-
+                            onBack()
                         }
                     ) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
@@ -145,6 +149,6 @@ fun SingUpScreenBody() {
 @Composable
 fun SignUpScreenPreview() {
     IdeaTrackerTheme {
-        SingUpScreenBody()
+        SingUpScreenBody(onBack = {})
     }
 }

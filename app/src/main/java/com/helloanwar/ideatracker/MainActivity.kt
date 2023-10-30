@@ -44,13 +44,28 @@ fun App() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
-            HomeScreen()
+            HomeScreen(
+                onLogin = {
+                    navController.navigate("login")
+                }
+            )
         }
         composable("login") {
-            LoginScreen()
+            LoginScreen(
+                onSignUp = {
+                    navController.navigate("signup")
+                },
+                onBack = {
+                    navController.navigateUp()
+                }
+            )
         }
         composable("signup") {
-            SingUpScreen()
+            SingUpScreen(
+                onBack = {
+                    navController.navigateUp()
+                }
+            )
         }
     }
 }

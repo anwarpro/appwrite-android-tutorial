@@ -42,13 +42,15 @@ import androidx.compose.ui.window.DialogProperties
 import com.helloanwar.ideatracker.ui.theme.IdeaTrackerTheme
 
 @Composable
-fun HomeScreen() {
-    HomeScreenBody()
+fun HomeScreen(onLogin: () -> Unit) {
+    HomeScreenBody(onLogin = onLogin)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreenBody() {
+fun HomeScreenBody(
+    onLogin: () -> Unit
+) {
     val scope = rememberCoroutineScope()
     var showAddDialog by remember { mutableStateOf(false) }
 
@@ -62,7 +64,7 @@ fun HomeScreenBody() {
                 actions = {
                     IconButton(
                         onClick = {
-
+                            onLogin()
                         }
                     ) {
                         Icon(
@@ -149,7 +151,7 @@ fun HomeScreenBody() {
 @Composable
 fun HomeScreenPreview() {
     IdeaTrackerTheme {
-        HomeScreenBody()
+        HomeScreenBody(onLogin = {})
     }
 }
 
